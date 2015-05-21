@@ -42,12 +42,16 @@ namespace CircuitBreakerPattern.Core
 
             if (newValue == 1)
             {
-                // Start the retry timer.
                 _timer.Change(_delayBetweenRetries, TimeSpan.FromMilliseconds(-1));
-
-                // Log that the circuit breaker is triggered.
                 Console.WriteLine("The circuit breaker for {0} is now in the armed state", _name);
             }
+        }
+
+        public void Reset()
+        {
+            var oldValue = Interlocked.Exchange(ref _failureCount, 0);
+            _timer.Change(Timeout.Infinite, Timeout.Infinite);
+            Console.WriteLine("The circuit breaker for {0} is now disarmed", _name);
         }
     }
 }
