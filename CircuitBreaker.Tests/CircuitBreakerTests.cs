@@ -4,9 +4,6 @@ using NUnit.Framework;
 
 namespace CircuitBreakerPattern.Tests
 {
-    /// <summary>
-    /// http://particular.net/blog/protect-your-software-with-the-circuit-breaker-design-pattern
-    /// </summary>
     [TestFixture]
     public class CircuitBreakerTests
     {
